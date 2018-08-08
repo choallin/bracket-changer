@@ -31,7 +31,8 @@ class BaracketChanger {
 
         // Replace the brackets in the text with different ones
         let txt = editor.document.getText(selection);
-        txt = txt.replace(/([({[])(\n*.+\n*)([)\]}])/, this._replacer);
+        console.log(txt);
+        txt = txt.replace(/([({[])([\w\d\s:,;$]*)([)\]}])/, this._replacer);
 
         editor.edit(editBuilder => {
             editBuilder.replace(selection, txt);
@@ -39,6 +40,7 @@ class BaracketChanger {
     }
 
     private _replacer(match : string, bracketOpen : string, content : string, bracketClosed : string) : string {
+        console.log(match);
         switch(bracketOpen) {
             case '(':
                 return `{${content}}`;
