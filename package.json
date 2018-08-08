@@ -8,7 +8,7 @@
         "vscode": "^1.25.0"
     },
     "categories": [
-        "Other"
+        "Formatters"
     ],
     "activationEvents": [
         "onCommand:extension.changeBrackets"
@@ -19,6 +19,10 @@
             {
                 "command": "extension.changeBrackets",
                 "title": "Change Brackets"
+            },
+            {
+                "command": "extension.changeApostrophe",
+                "title": "Change Apostrophes"
             }
         ]
     },

@@ -8,13 +8,18 @@ import * as vscode from 'vscode';
 export function activate(context: vscode.ExtensionContext) {
 
     let bracketChanger = new BaracketChanger();
+    let apostropheChanger = new ApostropheChanger();
 
     // The command has been defined in the package.json file
-    let disposable = vscode.commands.registerCommand('extension.changeBrackets', () => {
+    let disposableBracket = vscode.commands.registerCommand('extension.changeBrackets', () => {
         bracketChanger.changeBrackets();
     });
+    let disposableApostrophe = vscode.commands.registerCommand('extension.changeApostrophe', () => {
+        apostropheChanger.changeApostrophe();
+    });
 
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(disposableBracket);
+    context.subscriptions.push(disposableApostrophe);
 }
 
 export function deactivate() {
@@ -51,5 +56,28 @@ class BaracketChanger {
             break;
         }
         return content;
+    }
+}
+
+class ApostropheChanger {
+    public changeApostrophe() {
+        let editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            return ;
+        }
+
+        let selection = editor.selection
+
+        // Replace the brackets in the text with different ones
+        let txt = editor.document.getText(selection);
+        let txtReplaced = txt.replace('"', "'");
+        if (txt === txtReplaced) {
+            txtReplaced = txt.replace("'", '"');
+        }
+
+
+        editor.edit(editBuilder => {
+            editBuilder.replace(selection, txt);
+        });
     }
 }
