@@ -11,10 +11,10 @@ export function activate(context: vscode.ExtensionContext) {
     let apostropheChanger = new ApostropheChanger();
 
     // The command has been defined in the package.json file
-    let disposableBracket = vscode.commands.registerCommand('extension.changeBrackets', () => {
+    let disposableBracket = vscode.commands.registerCommand('char-changer.changeBrackets', () => {
         bracketChanger.changeBrackets();
     });
-    let disposableApostrophe = vscode.commands.registerCommand('extension.changeApostrophe', () => {
+    let disposableApostrophe = vscode.commands.registerCommand('char-changer.changeApostrophe', () => {
         apostropheChanger.changeApostrophe();
     });
 
@@ -70,14 +70,13 @@ class ApostropheChanger {
 
         // Replace the brackets in the text with different ones
         let txt = editor.document.getText(selection);
-        let txtReplaced = txt.replace('"', "'");
+        let txtReplaced = txt.replace(/"/g, "'");
         if (txt === txtReplaced) {
-            txtReplaced = txt.replace("'", '"');
+            txtReplaced = txt.replace(/'/g, '"');
         }
 
-
         editor.edit(editBuilder => {
-            editBuilder.replace(selection, txt);
+            editBuilder.replace(selection, txtReplaced);
         });
     }
 }

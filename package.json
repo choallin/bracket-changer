@@ -11,18 +11,19 @@
         "Formatters"
     ],
     "activationEvents": [
-        "onCommand:extension.changeBrackets"
+        "onCommand:char-changer.changeBrackets",
+        "onCommand:char-changer.changeApostrophe"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.changeBrackets",
-                "title": "Change Brackets"
+                "command": "char-changer.changeApostrophe",
+                "title": "Change Apostrophes"
             },
             {
-                "command": "extension.changeApostrophe",
-                "title": "Change Apostrophes"
+                "command": "char-changer.changeBrackets",
+                "title": "Change Brackets"
             }
         ]
     },
