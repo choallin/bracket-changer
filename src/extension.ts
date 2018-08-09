@@ -68,7 +68,7 @@ class ApostropheChanger {
 
         let selection = editor.selection;
 
-        // Replace the brackets in the text with different ones
+        // Replace the apostrophes in the text with different ones
         let txt = editor.document.getText(selection);
         let txtReplaced = txt.replace(/"/g, "'");
         if (txt === txtReplaced) {
