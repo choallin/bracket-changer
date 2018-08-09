@@ -32,7 +32,7 @@ class BaracketChanger {
             return ;
         }
 
-        let selection = editor.selection
+        let selection = editor.selection;
 
         // Replace the brackets in the text with different ones
         let txt = editor.document.getText(selection);
@@ -66,7 +66,7 @@ class ApostropheChanger {
             return ;
         }
 
-        let selection = editor.selection
+        let selection = editor.selection;
 
         // Replace the brackets in the text with different ones
         let txt = editor.document.getText(selection);
