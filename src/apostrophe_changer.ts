@@ -8,17 +8,15 @@ export default class ApostropheChanger {
       }
 
       let selection = editor.selection
-
-      // Replace the brackets in the text with different ones
+      // Replace the apostrophes in the text with different ones
       let txt = editor.document.getText(selection);
-      let txtReplaced = txt.replace('"', "'");
+      let txtReplaced = txt.replace(/"/g, "'");
       if (txt === txtReplaced) {
-          txtReplaced = txt.replace("'", '"');
+          txtReplaced = txt.replace(/'/g, '"');
       }
 
-
       editor.edit(editBuilder => {
-          editBuilder.replace(selection, txt);
+          editBuilder.replace(selection, txtReplaced);
       });
   }
 }
